@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find skidy_description)/urdf/002_skidy_compact.xacro'" />
+
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.5"/>
+
+    <include file="$(find skidy_description)/launch/002_gazebo_world.launch"> </include>
+
+    <node name="skidy_gazebo_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model skidy -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+</launch>
