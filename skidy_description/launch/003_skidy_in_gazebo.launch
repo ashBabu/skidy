@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <param name="robot_description" command="$(find xacro)/xacro.py '$(find skidy_description)/urdf/002_skidy_compact.xacro'" />
+    <arg name="model" default="002_skidy_compact.xacro"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find skidy_description)/urdf/$(arg model)'" />
 
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
