@@ -10,6 +10,7 @@ project(skidy_description)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  rviz
 )
 
 ## System dependencies are found with CMake's conventions

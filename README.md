@@ -72,6 +72,7 @@ Create a new catkin package `skidy_navigation`
 Add the Python files `read_laser.py, obstacle_avoidance and go_to_point.py`. The explanations are given in the [tutorial]("/construct_tutorial/001_ Exploring ROS Using a 2 Wheeled Robot _ The Construct.pdf") from chapter 4-6.
 
 ### Gmapping with skidy
+* `sudo apt install ros-$ROS_DISTRO-slam-gmapping`
 * Set the parameters in `skidy_navigation/launch/skidy_gmapping.launch`. The important ones are
 `scan_topic, base_frame, odom_frame`. The details for the rest can be found [here](http://wiki.ros.org/gmapping).
 * `roslaunch skidy_navigation skidy_gmapping.launch`. This will launch both `Rviz` and `gazebo` as the following lines are already added to the launch file
@@ -97,10 +98,12 @@ This will look as shown below
 <img style="float: left;" title="skidy basic" src="skidy_navigation/images/skidy_gmapping.png" alt="" width="800" height="400"/>
 
 ### Loading a saved map file. [ROS map_server](http://wiki.ros.org/map_server)
-* ```
-<arg name="map_file"  default="$(find skidy_navigation)/maps/map1.yaml"/>
+
+*
+```<arg name="map_file"  default="$(find skidy_navigation)/maps/map1.yaml"/>
 <node type="map_server" pkg="map_server" name="map_server" args="$(arg map_file)"/>
 ```
+
 * The launch file used is given in `skidy_navigation/launch/skidy_motion_planning.launch`
 * To load a map via command line `rosrun map_server map_server /path/to/map1.yaml`
 * This will publish three additional topics, viz.,
@@ -170,4 +173,4 @@ where `l = 0.5, b = 0.3, z = 0.07`
 * `roslaunch skidy_navigation skidy_motion_planning.launch` This launches `Rviz, gazebo, map_server, amcl` and `move_base`.
 * Using `2D Nav goal` in `Rviz`, we can send navigation goals to the skidy. (As on 4-Nov-2022, the tuning is not proper and hence the robot goes to the goal occasionally)
 
-**Notes:** `gazebo`'s differential_drive_controller plugin subscribes to `\cmd_vel` topic (a [Twist()](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Twist.html) msg or `rosmsg show geometry_msgs/Twist`) and find the change in position of robot from a fixed frame (usually `odom` or `map`). This frame can be set in `<odometryFrame>odom</odometryFrame>` in the `skidy_description/urdf/skidy_gazebo.xacro`. A litte more detailed explanation available [here](https://kiranpalla.com/autonomous-navigation-ros-differential-drive-robot-simulation/simple-navigation-with-differential-drive-plugin/). 
+**Notes:** `gazebo`'s differential_drive_controller plugin subscribes to `\cmd_vel` topic (a [Twist()](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Twist.html) msg or `rosmsg show geometry_msgs/Twist`) and find the change in position of robot from a fixed frame (usually `odom` or `map`). This frame can be set in `<odometryFrame>odom</odometryFrame>` in the `skidy_description/urdf/skidy_gazebo.xacro`. A litte more detailed explanation available [here](https://kiranpalla.com/autonomous-navigation-ros-differential-drive-robot-simulation/simple-navigation-with-differential-drive-plugin/).
