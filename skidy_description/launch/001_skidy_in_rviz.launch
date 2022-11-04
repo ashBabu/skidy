@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="model" default="001_skidy_full.xacro" />
-  <arg name="rvizconfig" default="$(find ros_nav)/rviz/001_skidy_in_rviz.rviz" />
+  <arg name="rvizconfig" default="$(find skidy_description)/rviz/skidy_in_rviz.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro.py '$(find skidy_description)/urdf/$(arg model)'" />
 
@@ -11,9 +11,12 @@
   </node>
 
   <!-- Combine joint values -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="true" output="screen">
+    <!-- <remap from="/joint_states" to="/skidy/joint_states" /> -->
+  </node>
 
   <!-- Show in Rviz   -->
-  <node name="rviz" pkg="rviz" type="rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true"/>
 
 </launch>

@@ -1,0 +1,8 @@
+<launch>
+
+  <rosparam command="load" file="$(find skidy_controllers)/config/joints.yaml"/>
+  <rosparam file="$(find skidy_controllers)/config/gazebo_ros_control_params.yaml" command="load"/>
+
+  <node name="skidy_robot" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller"/>
+
+</launch>

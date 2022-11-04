@@ -11,6 +11,13 @@
     <material>Gazebo/Blue</material>
   </gazebo>
 
+  <!-- GAZEBO -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace></robotNamespace>
+    </plugin>
+  </gazebo>
+
 <!-- differential_drive_controller -->
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
@@ -55,7 +62,7 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/skidy/laser/scan</topicName>
+        <topicName>/scan</topicName>
         <frameName>sensor_laser</frameName>
       </plugin>
     </sensor>

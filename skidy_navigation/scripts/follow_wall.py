@@ -103,7 +103,7 @@ def main():
 
     pub_ = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 
-    sub = rospy.Subscriber('/skidy/laser/scan', LaserScan, clbk_laser)
+    sub = rospy.Subscriber('/scan', LaserScan, clbk_laser)
 
     rate = rospy.Rate(20)
     while not rospy.is_shutdown():

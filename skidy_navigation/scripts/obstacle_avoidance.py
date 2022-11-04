@@ -89,11 +89,11 @@ def main():
     '''
     global pub
 
-    rospy.init_node('reading_laser')
+    rospy.init_node('obstacle_avoidance')
 
     pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
 
-    sub = rospy.Subscriber('/skidy/laser/scan', LaserScan, clbk_laser)
+    sub = rospy.Subscriber('/scan', LaserScan, clbk_laser)
 
     rospy.spin()
 

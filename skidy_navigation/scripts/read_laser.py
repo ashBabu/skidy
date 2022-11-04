@@ -16,7 +16,7 @@ def clbk_laser(msg):
 
 def main():
     rospy.init_node('reading_laser')
-    sub= rospy.Subscriber("/skidy/laser/scan", LaserScan, clbk_laser)
+    sub= rospy.Subscriber("/scan", LaserScan, clbk_laser)
 
     rospy.spin()
 
