@@ -45,6 +45,10 @@ Setup your colcon workspace
 * If the differential drive plugin in activated (commenting out the odometry and velocity plugin) in [robot_urdf](skidy_description/urdf/robot_test_diff_drive.urdf),
 publishing to `cmd_vel` steers the robot straingt even though there is an angular velocity specified.
 
+
+https://github.com/ashBabu/skidy/assets/10324110/137a58f3-55d4-4ce6-8c3f-e11993d74568
+
+
   <video width="600" height="440" controls>
     <source src="videos/diff_drive_plugin.mp4" type="video/mp4">
   </video>
@@ -58,6 +62,10 @@ recognized by the tf-tree. Rviz2 shows a warning
    ```
 * Enabling the odometry and velocity plugin (commenting out diff drive) in [robot_urdf](skidy_description/urdf/robot_test_diff_drive.urdf),
 behaves more or less like what a differential drive plugin should do
+
+
+https://github.com/ashBabu/skidy/assets/10324110/b07d4f63-22a4-4ed3-aa1b-5db9b499bef7
+
 
   <video width="600" height="440" controls>
     <source src="videos/odom_velocity_plugin.mp4" type="video/mp4">
