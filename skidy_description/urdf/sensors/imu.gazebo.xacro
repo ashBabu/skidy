@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--http://sdformat.org/spec?elem=sensor&ver=1.9-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="imu_sensor" params="reference_link sensor_name update_rate topic_ns topic vel_mean vel_std_dev acc_mean acc_std_dev
+vel_bias_mean vel_bias_std_dev acc_bias_mean acc_bias_std_dev">
+        <!-- only gaussian noise atm, same mean -->
+        <gazebo reference="${reference_link}">
+            <sensor name="${sensor_name}" type="imu">
+                <always_on>1</always_on>
+                <update_rate>${update_rate}</update_rate>
+                <visualize>true</visualize>
+                <topic>${topic_ns}/${topic}</topic>
+                <imu>
+                    <!--<orientation_reference_frame>
+                        <localization>CUSTOM</localization>
+                        <custom_rpy>1.570795 0 0</custom_rpy>
+                    </orientation_reference_frame>-->
+                    <angular_velocity>
+                        <x>
+                            <noise type="gaussian">
+                                <mean>${vel_mean}</mean>
+                                <stddev>${vel_std_dev}</stddev>
+                                <bias_mean>${vel_bias_mean}</bias_mean>
+                                <bias_stddev>${vel_bias_std_dev}</bias_stddev>
+                            </noise>
+                        </x>
+                        <y>
+                            <noise type="gaussian">
+                                <mean>${vel_mean}</mean>
+                                <stddev>${vel_std_dev}</stddev>
+                                <bias_mean>${vel_bias_mean}</bias_mean>
+                                <bias_stddev>${vel_bias_std_dev}</bias_stddev>
+                            </noise>
+                        </y>
+                        <z>
+                            <noise type="gaussian">
+                                <mean>${vel_mean}</mean>
+                                <stddev>${vel_std_dev}</stddev>
+                                <bias_mean>${vel_bias_mean}</bias_mean>
+                                <bias_stddev>${vel_bias_std_dev}</bias_stddev>
+                            </noise>
+                        </z>
+                    </angular_velocity>
+                    <linear_acceleration>
+                        <x>
+                            <noise type="gaussian">
+                                <mean>${acc_mean}</mean>
+                                <stddev>${acc_std_dev}</stddev>
+                                <bias_mean>${acc_bias_mean}</bias_mean>
+                                <bias_stddev>${acc_bias_std_dev}</bias_stddev>
+                            </noise>
+                        </x>
+                        <y>
+                            <noise type="gaussian">
+                                <mean>${acc_mean}</mean>
+                                <stddev>${acc_std_dev}</stddev>
+                                <bias_mean>${acc_bias_mean}</bias_mean>
+                                <bias_stddev>${acc_bias_std_dev}</bias_stddev>
+                            </noise>
+                        </y>
+                        <z>
+                            <noise type="gaussian">
+                                <mean>${acc_mean}</mean>
+                                <stddev>${acc_std_dev}</stddev>
+                                <bias_mean>${acc_bias_mean}</bias_mean>
+                                <bias_stddev>${acc_bias_std_dev}</bias_stddev>
+                            </noise>
+                        </z>
+                    </linear_acceleration>
+                </imu>
+                <plugin filename="libignition-gazebo-imu-system.so"
+                        name="ignition::gazebo::systems::Imu">
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>

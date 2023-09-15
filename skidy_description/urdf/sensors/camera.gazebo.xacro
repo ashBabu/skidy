@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="depth_camera_sensor" params="reference_link sensor_name update_rate topic_ns topic">
+        <gazebo reference="${reference_link}">
+                <always_on>1</always_on>
+                <sensor name="${sensor_name}" type="depth_camera">
+                    <update_rate>${update_rate}</update_rate>
+                    <topic>${topic_ns}/${topic}</topic>
+                    <camera>
+                        <horizontal_fov>1.05</horizontal_fov>
+                        <image>
+                            <width>256</width>
+                            <height>256</height>
+                            <format>R_FLOAT32</format>
+                        </image>
+                        <clip>
+                            <near>0.1</near>
+                            <far>10.0</far>
+                        </clip>
+                    </camera>
+                <plugin
+                    filename="ignition-gazebo-sensors-system"
+                    name="ignition::gazebo::systems::Sensors">
+                    <render_engine>ogre2</render_engine>
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>

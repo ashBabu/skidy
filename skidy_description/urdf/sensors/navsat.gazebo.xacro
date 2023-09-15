@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="navsat_sensor" params="reference_link sensor_name update_rate topic_ns topic mean std_dev">
+        <gazebo reference="${reference_link}">
+<!--            <spherical_coordinates>
+                <surface_model>EARTH_WGS84</surface_model>
+                <world_frame_orientation>ENU</world_frame_orientation>
+                <latitude_deg>-22.986687</latitude_deg>
+                <longitude_deg>-43.202501</longitude_deg>
+                <elevation>0</elevation>
+                <heading_deg>0</heading_deg>
+            </spherical_coordinates>-->
+            <sensor name="navsat" type="navsat">
+                <always_on>1</always_on>
+                <update_rate>1</update_rate>
+                <pose>0 0 0.05 0 0 0</pose>
+                <topic>${topic_ns}/${topic}</topic>
+                <navsat>
+                    <position_sensing>
+                        <horizontal>
+                            <noise type="gaussian">
+                            <mean>${mean}</mean>
+                            <stddev>${std_dev}</stddev>
+                        </noise>
+                        </horizontal>
+                        <vertical>
+                            <noise type="gaussian">
+                            <mean>${mean}</mean>
+                            <stddev>${std_dev}</stddev>
+                        </noise>
+                        </vertical>
+                    </position_sensing>
+                    <velocity_sensing>
+                        <horizontal>
+                            <noise type="gaussian">
+                                <mean>${mean}</mean>
+                                <stddev>${std_dev}</stddev>
+                            </noise>
+                        </horizontal>
+                        <vertical>
+                            <noise type="gaussian">
+                                <mean>${mean}</mean>
+                                <stddev>${std_dev}</stddev>
+                            </noise>
+                        </vertical>
+                    </velocity_sensing>
+                </navsat>
+                <!-- From share/ignition/ignition-gazebo6/worlds/spherical_coordinates.sdf-->
+                <plugin
+                    filename="libignition-gazebo-navsat-system"
+                    name="ignition::gazebo::systems::NavSat">
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>
