@@ -1,11 +1,33 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:macro name="depth_camera_sensor" params="reference_link sensor_name update_rate topic_ns topic">
+    <xacro:include filename="$(find skidy_description)/urdf/robot_diff_drive.xacro" />
+    <xacro:macro name="depth_camera_sensor" params="reference_link parent sensor_name update_rate topic_ns topic">
+        <link name="${reference_link}">
+            <visual>
+                <geometry>
+                    <box size="0.05 0.05 0.05"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <box size="0.05 0.05 0.05"/>
+                </geometry>
+            </collision>
+            <xacro:box_inertia m="0.01" w="0.01" d="0.01" h="0.01"/>
+        </link>
+        <joint name="camera_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${reference_link}"/>
+            <origin xyz="0 0 0.58" rpy="0 0 0"/>
+        </joint>
         <gazebo reference="${reference_link}">
                 <always_on>1</always_on>
-                <sensor name="${sensor_name}" type="depth_camera">
+                <sensor name="${sensor_name}" type="rgbd_camera">
                     <update_rate>${update_rate}</update_rate>
                     <topic>${topic_ns}/${topic}</topic>
+                    <ignition_frame_id>"camera_link"</ignition_frame_id>
+                    <always_on>1</always_on>
                     <camera>
                         <horizontal_fov>1.05</horizontal_fov>
                         <image>

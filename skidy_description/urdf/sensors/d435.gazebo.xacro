@@ -37,8 +37,8 @@
         <!-- camera body, with origin at bottom screw mount -->
         <joint name="${name}_joint" type="fixed">
 <!--            <xacro:insert_block name="origin" />-->
-<!--            <origin xyz="-0.5 0 0.8" rpy="-1.7450 0 -1.57"/>&ndash;&gt;-->
-            <origin xyz="0 0 0.18" rpy="0 0.05 0"/>-->
+<!--            <origin xyz="-0.5 0 0.8" rpy="-1.7450 0 -1.57"/>-->
+            <origin xyz="0 0 0.18" rpy="0 0.05 0"/>
             <parent link="${parent}"/>
             <child link="${name}_bottom_screw_frame" />
         </joint>
@@ -155,8 +155,8 @@
             <sensor name="realsense_d435" type="rgbd_camera">
                 <!--            this is detected by ros2 run tf2_ros tf2_echo camera_bottom_screw_frame camera_depth_optical_frame-->
                 <!--                <pose>0.0 0.020 0.011 0.0 0.0 0.0</pose>-->
+                <ignition_frame_id>"${name}_color_optical_frame"</ignition_frame_id>
                 <camera>
-<!--                    <optical_frame_id>"${name}_color_optical_frame"</optical_frame_id>-->
                     <horizontal_fov>1.047</horizontal_fov>
                     <image>
                         <width>640</width>

@@ -68,23 +68,23 @@
     <link name="imu_link">
         <visual>
             <geometry>
-                <box size="0.1 0.1 0.1"/>
+                <box size="0.01 0.01 0.01"/>
             </geometry>
         </visual>
 
         <collision>
             <geometry>
-                <box size="0.1 0.1 0.1"/>
+                <box size="0.01 0.01 0.01"/>
             </geometry>
         </collision>
 
-        <xacro:box_inertia m="0.1" w="0.1" d="0.1" h="0.1"/>
+        <xacro:box_inertia m="0.01" w="0.01" d="0.01" h="0.01"/>
     </link>
 
     <joint name="imu_joint" type="fixed">
         <parent link="base_link"/>
         <child link="imu_link"/>
-        <origin xyz="0 0 0.01"/>
+        <origin xyz="0.0 ${base_width/2} ${base_height/2+0.01}"/>
     </joint>
 
     <gazebo>
@@ -129,10 +129,23 @@
     <joint name="navsat_joint" type="fixed">
         <parent link="base_link"/>
         <child link="navsat_link"/>
-        <origin xyz="-0.2 0.3 0.3" rpy="0 0 0"/>
+        <origin xyz="0.0 -${base_width/2} ${base_height/2+0.01}"/>
     </joint>
 
-    <link name="navsat_link"/>
+    <link name="navsat_link">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+        <xacro:box_inertia m="0.01" w="0.01" d="0.01" h="0.01"/>
+    </link>
 
     <!-- IMU -->
     <!--https://classic.gazebosim.org/tutorials?tut=sensor_noise (High quality IMU noise)-->
@@ -145,8 +158,12 @@
     <xacro:navsat_sensor reference_link="navsat_link" sensor_name="navsat" update_rate="1" topic_ns="navsat" topic="fix" mean="0" std_dev="0.002"/>
 
     <!--realsense Camera-->
-    <xacro:include filename="$(find skidy_description)/urdf/sensors/d435.gazebo.xacro" />
+    <!--<xacro:include filename="$(find skidy_description)/urdf/sensors/d435.gazebo.xacro" />
     <xacro:sensor_d435 parent="base_link" name="camera" use_nominal_extrinsics="true" topic_ns="rgbd" topic="camera">
         <origin xyz="0.04 0 -0.18" rpy="0 0 0" />
-    </xacro:sensor_d435>
+    </xacro:sensor_d435>-->
+
+    <xacro:include filename="$(find skidy_description)/urdf/sensors/camera.gazebo.xacro" />
+    <xacro:depth_camera_sensor reference_link="camera_link" parent="base_link" sensor_name="realsense_d435" update_rate="30" topic_ns="rgbd" topic="camera">
+    </xacro:depth_camera_sensor>
 </robot>
