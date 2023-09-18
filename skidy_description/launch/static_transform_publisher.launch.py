@@ -6,7 +6,6 @@ from launch import LaunchDescription
 def generate_launch_description():
 
     ld = LaunchDescription()
-    # 0, 0.8509035, 0, 0.525322
     map_odom_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -22,7 +21,9 @@ def generate_launch_description():
             '--qw', '1',
             '--frame-id', 'map',
             '--child-frame-id', 'odom'
-        ]
+        ],
+        respawn=True,
+        respawn_delay=3
         )
 
     camera_tf = Node(
@@ -40,7 +41,9 @@ def generate_launch_description():
             '--qw', '1',
             '--frame-id', 'camera_bottom_screw_frame',
             '--child-frame-id', 'device/base_link/realsense_d435'
-         ]
+         ],
+        respawn=True,
+        respawn_delay=3
          )
 
     imu_tf = Node(
@@ -58,7 +61,9 @@ def generate_launch_description():
             '--qw', '1',
             '--frame-id', 'imu_link',
             '--child-frame-id', 'device/base_link/imu'
-         ]
+         ],
+        respawn=True,
+        respawn_delay=3
         )
 
     navsat_tf = Node(
@@ -76,7 +81,9 @@ def generate_launch_description():
             '--qw', '1',
             '--frame-id', 'navsat_link',
             '--child-frame-id', 'device/base_link/navsat'
-        ]
+        ],
+        respawn=True,
+        respawn_delay=3
         )
 
     ld.add_action(map_odom_tf)

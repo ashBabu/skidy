@@ -88,7 +88,7 @@
     </joint>
 
     <gazebo>
-        <plugin
+        <!--<plugin
                 filename="ignition-gazebo-diff-drive-system"
                 name="ignition::gazebo::systems::DiffDrive">
             <left_joint>drivewhl_l_joint</left_joint>
@@ -108,13 +108,10 @@
             <min_linear_velocity>-0.5</min_linear_velocity>
             <max_angular_velocity>1</max_angular_velocity>
             <min_angular_velocity>-1</min_angular_velocity>
-        </plugin>
-    </gazebo>
+        </plugin>-->
 
-    <gazebo>
         <plugin filename="ignition-gazebo-odometry-publisher-system"
                 name="ignition::gazebo::systems::OdometryPublisher">
-            <!-- Default from gz-sim was set to /model/mpo_700/topic and /mpo_700/frame on July 2023 -->
             <odom_frame>odom</odom_frame>
             <odom_covariance_topic>odom</odom_covariance_topic>
             <tf_topic>tf</tf_topic>
@@ -139,17 +136,17 @@
 
     <!-- IMU -->
     <!--https://classic.gazebosim.org/tutorials?tut=sensor_noise (High quality IMU noise)-->
-    <!--<xacro:include filename="$(find skidy_description)/urdf/sensors/imu.gazebo.xacro" />
+    <xacro:include filename="$(find skidy_description)/urdf/sensors/imu.gazebo.xacro" />
     <xacro:imu_sensor reference_link="imu_link" sensor_name="imu" update_rate="100" topic_ns="device/imu" topic="data" vel_mean="0.0" vel_std_dev="0.0002" acc_mean="0.0" acc_std_dev="0.017"
                       vel_bias_mean="0.0000075" vel_bias_std_dev="0.0000008" acc_bias_mean="0.1" acc_bias_std_dev="0.001"/>
 
-    &lt;!&ndash; GPS &ndash;&gt;
+    <!-- GPS -->
     <xacro:include filename="$(find skidy_description)/urdf/sensors/navsat.gazebo.xacro" />
-    <xacro:navsat_sensor reference_link="navsat_link" sensor_name="navsat" update_rate="10" topic_ns="navsat" topic="fix" mean="0" std_dev="0.002"/>
+    <xacro:navsat_sensor reference_link="navsat_link" sensor_name="navsat" update_rate="1" topic_ns="navsat" topic="fix" mean="0" std_dev="0.002"/>
 
-    &lt;!&ndash;realsense Camera&ndash;&gt;
-    <xacro:include filename="$(find skidy_description)/urdf/sensors/d435.gazebo.copy.xacro" />
+    <!--realsense Camera-->
+    <xacro:include filename="$(find skidy_description)/urdf/sensors/d435.gazebo.xacro" />
     <xacro:sensor_d435 parent="base_link" name="camera" use_nominal_extrinsics="true" topic_ns="rgbd" topic="camera">
         <origin xyz="0.04 0 -0.18" rpy="0 0 0" />
-    </xacro:sensor_d435>-->
+    </xacro:sensor_d435>
 </robot>

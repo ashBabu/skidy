@@ -102,6 +102,16 @@ def generate_launch_description():
                      'static_transform_publisher.launch.py')
     )
 
+    rtabmap_odometry = IncludeLaunchDescription(
+        os.path.join(get_package_share_directory('skidy_navigation'), 'launch',
+                     'rtabmap_odometry.launch.py')
+    )
+
+    robot_localization = IncludeLaunchDescription(
+        os.path.join(get_package_share_directory('skidy_navigation'), 'launch',
+                     'robot_localization.launch.py')
+    )
+
     joint_state_publisher = Node(
         package="joint_state_publisher",
         executable="joint_state_publisher",
@@ -112,12 +122,14 @@ def generate_launch_description():
 
     ld.add_action(declare_use_rviz_cmd)
     ld.add_action(declare_rviz_config_file_cmd)
-    ld.add_action(robot_state_publisher)
     ld.add_action(static_transforms)
-    ld.add_action(rviz)
     ld.add_action(gazebo)
+    ld.add_action(joint_state_publisher)
+    ld.add_action(robot_state_publisher)
     ld.add_action(spawn)
     ld.add_action(bridge)
-    ld.add_action(joint_state_publisher)
+    ld.add_action(rtabmap_odometry)
+    ld.add_action(robot_localization)
+    ld.add_action(rviz)
 
     return ld
