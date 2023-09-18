@@ -92,7 +92,8 @@ def generate_launch_description():
                    '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
                    '/odom@nav_msgs/msg/Odometry@ignition.msgs.Odometry',
                    '/odom@nav_msgs/msg/Odometry@ignition.msgs.OdometryWithCovariance',
-                   '/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V'
+                   '/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V',
+                   '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'
                    ],
         output='screen'
     )
