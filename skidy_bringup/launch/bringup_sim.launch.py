@@ -58,8 +58,8 @@ def generate_launch_description():
 
     # Gazebo Sim
     gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
+        os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'),
+        # launch_arguments={'gz_args':  '-r empty.sdf'}.items(),
         launch_arguments={'gz_args':  world_path}.items(),
     )
 
@@ -71,7 +71,7 @@ def generate_launch_description():
         arguments=[
             '-name', 'device',
             '-x', '0.0',
-            '-z', '0.2',
+            '-z', '2.5',
             '-y', '0.0',
             # '-file', urdf_file,
             '-topic', '/robot_description'
@@ -129,8 +129,8 @@ def generate_launch_description():
     ld.add_action(robot_state_publisher)
     ld.add_action(spawn)
     ld.add_action(bridge)
-    ld.add_action(rtabmap_odometry)
-    ld.add_action(robot_localization)
+    # ld.add_action(rtabmap_odometry)
+    # ld.add_action(robot_localization)
     ld.add_action(rviz)
 
     return ld
