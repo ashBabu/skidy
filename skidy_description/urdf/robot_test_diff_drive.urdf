@@ -63,8 +63,6 @@
         <origin xyz="${caster_xoff} 0.0 ${-(base_height/2)}" rpy="0 0 0"/>
     </joint>
 
-
-
     <link name="imu_link">
         <visual>
             <geometry>
@@ -158,12 +156,12 @@
     <xacro:navsat_sensor reference_link="navsat_link" sensor_name="navsat" update_rate="1" topic_ns="navsat" topic="fix" mean="0" std_dev="0.002"/>
 
     <!--realsense Camera-->
-    <!--<xacro:include filename="$(find skidy_description)/urdf/sensors/d435.gazebo.xacro" />
+    <xacro:include filename="$(find skidy_description)/urdf/sensors/d435.gazebo.xacro" />
     <xacro:sensor_d435 parent="base_link" name="camera" use_nominal_extrinsics="true" topic_ns="rgbd" topic="camera">
         <origin xyz="0.04 0 -0.18" rpy="0 0 0" />
-    </xacro:sensor_d435>-->
+    </xacro:sensor_d435>
 
-    <xacro:include filename="$(find skidy_description)/urdf/sensors/camera.gazebo.xacro" />
+    <!--<xacro:include filename="$(find skidy_description)/urdf/sensors/camera.gazebo.xacro" />
     <xacro:depth_camera_sensor reference_link="camera_link" parent="base_link" sensor_name="realsense_d435" update_rate="30" topic_ns="rgbd" topic="camera">
-    </xacro:depth_camera_sensor>
+    </xacro:depth_camera_sensor>-->
 </robot>

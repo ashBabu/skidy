@@ -153,9 +153,7 @@
 
         <gazebo reference="${name}_bottom_screw_frame">
             <sensor name="realsense_d435" type="rgbd_camera">
-                <!--            this is detected by ros2 run tf2_ros tf2_echo camera_bottom_screw_frame camera_depth_optical_frame-->
-                <!--                <pose>0.0 0.020 0.011 0.0 0.0 0.0</pose>-->
-                <ignition_frame_id>"${name}_color_optical_frame"</ignition_frame_id>
+<!--		    <ignition_frame_id>${name}_color_optical_frame</ignition_frame_id>-->
                 <camera>
                     <horizontal_fov>1.047</horizontal_fov>
                     <image>
@@ -208,11 +206,5 @@
                 </plugin>
             </sensor>
         </gazebo>
-
-        <!--<gazebo>
-            <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
-                <render_engine>ogre2</render_engine>
-            </plugin>
-        </gazebo>-->
     </xacro:macro>
 </robot>
