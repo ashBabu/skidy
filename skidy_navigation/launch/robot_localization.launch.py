@@ -9,7 +9,7 @@ def generate_launch_description():
 
     robot_localization_dir = get_package_share_directory('skidy_navigation')
     parameters_file_dir = os.path.join(robot_localization_dir, 'config')
-    parameters_file_path = os.path.join(parameters_file_dir, 'localization_params.yaml')
+    parameters_file_path = os.path.join(parameters_file_dir, 'localization.yaml')
     os.environ['FILE_PATH'] = str(parameters_file_dir)
 
     output_final_position = DeclareLaunchArgument(

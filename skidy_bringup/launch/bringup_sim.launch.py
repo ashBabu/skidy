@@ -71,10 +71,10 @@ def generate_launch_description():
         arguments=[
             '-name', 'device',
             '-x', '0.0',
-            '-z', '2.5',
+            '-z', '1.5',
             '-y', '0.0',
             # '-file', urdf_file,
-            '-topic', '/robot_description'
+            '-topic', 'robot_description'
         ],
         output='screen'
     )
@@ -91,7 +91,8 @@ def generate_launch_description():
                    '/rgbd/camera/image@sensor_msgs/msg/Image@ignition.msgs.Image',
                    '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
                    '/odom@nav_msgs/msg/Odometry@ignition.msgs.Odometry',
-                   '/odom@nav_msgs/msg/Odometry@ignition.msgs.OdometryWithCovariance',
+                   # '/odom@nav_msgs/msg/Odometry@ignition.msgs.OdometryWithCovariance',
+                   # sensor_msgs/msg/JointState	gz.msgs.Model
                    '/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V',
                    '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'
                    ],

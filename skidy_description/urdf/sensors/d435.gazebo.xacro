@@ -153,7 +153,7 @@
 
         <gazebo reference="${name}_bottom_screw_frame">
             <sensor name="realsense_d435" type="rgbd_camera">
-<!--		    <ignition_frame_id>${name}_color_optical_frame</ignition_frame_id>-->
+                <ignition_frame_id>${name}_bottom_screw_frame</ignition_frame_id>
                 <camera>
                     <horizontal_fov>1.047</horizontal_fov>
                     <image>
